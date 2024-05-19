@@ -80,6 +80,11 @@ class MealDetailScreen extends StatelessWidget {
               ),
             ],
           ),
-        ));
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.star),
+          onPressed: () {},
+        )
+    );
   }
 }
