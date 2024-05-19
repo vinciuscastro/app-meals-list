@@ -20,9 +20,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  ThemeMode _themeMode = ThemeMode.system;
   List<Meal> _availableMeals = DUMMY_MEALS;
   List<Meal> _favoriteMeals = [];
   Settings settings = Settings();
+
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode = _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    });
+  }
 
   void _filterMeals(Settings settings){
     setState(() {
@@ -55,8 +63,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DeliMeals',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.green,
         hintColor: Colors.amber,
         fontFamily: 'Raleway',
         canvasColor: const Color.fromRGBO(255, 250, 220, 1),
@@ -67,13 +76,27 @@ class _MyAppState extends State<MyApp> {
           )
         )
       ),
+      darkTheme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        hintColor: Colors.cyan,
+          scaffoldBackgroundColor: Colors.grey[800],
+        fontFamily: 'Raleway',
 
+        textTheme: ThemeData.light().textTheme.copyWith(
+          titleMedium: const TextStyle(
+            fontFamily: 'RobotoCondensed',
+            color: Colors.white,
+            fontSize: 20,
+          )
+        )
+      ),
+      themeMode: _themeMode,
       home: TabsScreen(_favoriteMeals),
       routes: {
         // AppRoutes.HOME: (ctx) => CategoriesScreen(),
         AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsScreen(_availableMeals),
         AppRoutes.MEAL_DETAIL: (ctx) => MealDetailScreen(_toggleFavorite, _isFavorite),
-        AppRoutes.SETTINGS: (ctx) => SettingsScreen(_filterMeals, settings),
+        AppRoutes.SETTINGS: (ctx) => SettingsScreen(_filterMeals, settings, _toggleTheme),
       },
       onUnknownRoute: (settings){
         return MaterialPageRoute(builder: (_) => const CategoriesScreen());

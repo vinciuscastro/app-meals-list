@@ -4,9 +4,10 @@ import '../models/settings.dart';
 
 class SettingsScreen extends StatefulWidget {
   final Function(Settings) onSettingsChanged;
+  final Function toggleTheme;
   final Settings settings;
 
-  const SettingsScreen(this.onSettingsChanged, this.settings, {super.key});
+  const SettingsScreen(this.onSettingsChanged, this.settings, this.toggleTheme, {super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -82,7 +83,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   settings.isVegetarian,
                   (value) => setState(() => settings.isVegetarian = value),
                 ),
-
+                SwitchListTile(
+                  title: const Text("Modo Escuro"),
+                  value: settings.isDarkMode,
+                  onChanged: (value) {
+                    widget.toggleTheme();
+                    setState(() => settings.isDarkMode = value);
+                  },
+                ),
               ],
             ),
           ),

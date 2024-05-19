@@ -76,7 +76,7 @@ class MealDetailScreen extends StatelessWidget {
                           leading: CircleAvatar(
                             child: Text("${index+1}"),
                           ),
-                          title: Text(meal.steps[index]),
+                          title: Text(meal.steps[index], style: TextStyle(fontSize: 16, color: Colors.black)),
                         ),
                         Divider(),
                       ],
