@@ -65,8 +65,8 @@ class _MyAppState extends State<MyApp> {
       title: 'DeliMeals',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
-        hintColor: Colors.amber,
+        primarySwatch: Colors.deepPurple,
+        hintColor: Colors.cyan,
         fontFamily: 'Raleway',
         canvasColor: const Color.fromRGBO(255, 250, 220, 1),
         textTheme: ThemeData.light().textTheme.copyWith(

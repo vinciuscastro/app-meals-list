@@ -31,7 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   ) {
     return SwitchListTile(
       title: Text(title),
-      subtitle: Text(subtitle),
+      subtitle: Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)),
       value: value,
       onChanged: (value) {
         onChange(value);
@@ -46,7 +46,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         title: const Text("Configurações"),
       ),
-      drawer: MainDrawer(),
       body: Column(
         children: [
           Container(
